@@ -6,7 +6,9 @@ class UserRepository {
     this.client = client
   }
 
-  async create({ name, username, email, password }) {
+  async create(body) {
+    console.log(JSON.stringify(body))
+    const { name, username, email, password } = body
     const id = randomUUID()
     await this.client.query(
       'INSERT INTO USERS(ID,NAME,USERNAME, EMAIL, PASSWORD) VALUES($1, $2, $3, $4, $5)',
@@ -16,6 +18,7 @@ class UserRepository {
       name,
       username,
       email,
+      password,
       id
     })
     return user

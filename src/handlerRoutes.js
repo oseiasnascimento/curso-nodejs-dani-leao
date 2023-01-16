@@ -5,7 +5,6 @@ const handler = (req, res) => {
   const url = req.url
 
   const urlSplit = url.split('/').filter(Boolean)
-  const id = urlSplit[0]
 
   const resultRouter = router.filter(item => {
     return (
