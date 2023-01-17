@@ -3,7 +3,7 @@ const user = require('../user')
 class UserController {
   async post(req, res) {
     const { body } = req
-    const result = await user.create(req.body)
+    const result = await user.create(body)
     return res.end(JSON.stringify(result))
   }
 
@@ -15,8 +15,6 @@ class UserController {
   async put(req, res) {
     const { id } = req.params
     const { body } = req
-
-    console.log(req.params)
     
     try {
       await user.update(body, id)

@@ -36,9 +36,17 @@ const handler = (req, res) => {
     }
   })
 
-  req.params = objParams
+  req
+    .on('data', data => {
+      const body = JSON.parse(data)
 
-  return executeRouter.controller(req, res)
+      req.body = body
+    })
+    .on('end', () => {
+      req.params = objParams
+
+      return executeRouter.controller(req, res)
+    })
 }
 
 module.exports = handler

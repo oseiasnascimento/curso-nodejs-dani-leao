@@ -6,8 +6,7 @@ class UserRepository {
     this.client = client
   }
 
-  async create(body) {
-    console.log(JSON.stringify(body))
+  async create(body) {  
     const { name, username, email, password } = body
     const id = randomUUID()
     await this.client.query(
